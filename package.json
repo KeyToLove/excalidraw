@@ -32,6 +32,7 @@
     "browser-fs-access": "0.29.1",
     "clsx": "1.1.1",
     "cross-env": "7.0.3",
+    "electron-squirrel-startup": "1.0.0",
     "fake-indexeddb": "3.1.7",
     "firebase": "8.3.3",
     "i18next-browser-languagedetector": "6.1.4",
@@ -70,6 +71,10 @@
     "workbox-streams": "^6.5.4"
   },
   "devDependencies": {
+    "@electron-forge/cli": "^6.0.4",
+    "@electron-forge/maker-dmg": "6.0.4",
+    "@electron-forge/maker-squirrel": "6.0.4",
+    "@electron-forge/maker-zip": "^6.0.4",
     "@excalidraw/eslint-config": "1.0.0",
     "@excalidraw/prettier-config": "1.0.2",
     "@types/chai": "4.3.0",
@@ -78,6 +83,7 @@
     "@types/resize-observer-browser": "0.1.7",
     "chai": "4.3.6",
     "dotenv": "16.0.1",
+    "electron": "22.0.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-prettier": "3.3.1",
     "http-server": "14.1.1",
@@ -115,7 +121,7 @@
     "locales-coverage:description": "node scripts/locales-coverage-description.js",
     "prepare": "husky install",
     "prettier": "prettier \"**/*.{css,scss,json,md,html,yml}\" --ignore-path=.eslintignore",
-    "start": "react-scripts start",
+    "start:web": "react-scripts start",
     "start:production": "npm run build && npx http-server build -a localhost -p 5001 -o",
     "test:all": "yarn test:typecheck && yarn test:code && yarn test:other && yarn test:app --watchAll=false",
     "test:app": "react-scripts test --passWithNoTests",
@@ -127,6 +133,11 @@
     "test": "yarn test:app",
     "autorelease": "node scripts/autorelease.js",
     "prerelease": "node scripts/prerelease.js",
-    "release": "node scripts/release.js"
-  }
+    "release": "node scripts/release.js",
+    "start:electron": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "yarn build && electron-forge make"
+  },
+  "main": "electron.js",
+  "version": "2023-01-09T09:24:17Z-61844229"
 }

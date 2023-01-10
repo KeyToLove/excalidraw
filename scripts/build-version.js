@@ -4,6 +4,7 @@ const fs = require("fs");
 const path = require("path");
 const versionFile = path.join("build", "version.json");
 const indexFile = path.join("build", "index.html");
+const pkgJsonFile = path.join(__dirname, "../package.json");
 
 const versionDate = (date) => date.toISOString().replace(".000", "");
 
@@ -52,8 +53,19 @@ fs.readFile(indexFile, "utf8", (error, data) => {
     return console.error(error);
   }
   const result = data.replace(/{version}/g, getFullVersion());
-
   fs.writeFile(indexFile, result, "utf8", (error) => {
+    if (error) {
+      return console.error(error);
+    }
+  });
+});
+
+fs.readFile(pkgJsonFile, "utf8", (error, data) => {
+  if (error) {
+    return console.error(error);
+  }
+  const result = data.replace(/{version}/g, getFullVersion());
+  fs.writeFile(pkgJsonFile, result, "utf8", (error) => {
     if (error) {
       return console.error(error);
     }
