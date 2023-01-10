@@ -540,8 +540,16 @@ class Collab extends PureComponent<Props, CollabState> {
 
     this.initializeIdleDetector();
 
+    // electron桌面应用使用线上服务
+    let _activeRoomLink;
+    const hash = window.location.href.split("#")[1];
+    if (window.location.protocol === "file:") {
+      _activeRoomLink = `https://excalidraw.com#${hash}`;
+    } else {
+      _activeRoomLink = window.location.href;
+    }
     this.setState({
-      activeRoomLink: window.location.href,
+      activeRoomLink: _activeRoomLink,
     });
 
     return scenePromise;

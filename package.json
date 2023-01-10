@@ -135,7 +135,7 @@
     "autorelease": "node scripts/autorelease.js",
     "prerelease": "node scripts/prerelease.js",
     "release": "node scripts/release.js",
-    "start:electron": "electron-forge start",
+    "start:electron": "nodemon --watch  electron.js --delay 3000ms --exec electron-forge start",
     "package": "electron-forge package",
     "make": "yarn build && electron-forge make"
   },
